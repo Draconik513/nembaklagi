@@ -131,6 +131,15 @@ function initMusicControl() {
   const bgMusic = document.getElementById('bgMusic');
   let isPlaying = false;
   
+  // Auto play music
+  bgMusic.play().then(() => {
+    isPlaying = true;
+    musicControl.classList.add('playing');
+    musicControl.querySelector('.music-icon').textContent = '🔊';
+  }).catch(() => {
+    // Browser blocked autoplay
+  });
+  
   musicControl.addEventListener('click', () => {
     if (isPlaying) {
       bgMusic.pause();
